@@ -33,6 +33,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -85,7 +86,10 @@ private fun Content() {
 //    circleButton()
 //    BlobButton()
 //    SimpleImage()
-    SimpleImageCoil()
+//    SimpleImageCoil()
+//    RoundedImageCoil()
+    CircleImageCoil()
+
 
 }
 
@@ -312,6 +316,29 @@ private fun SimpleImageCoil() {
         modifier = Modifier.size(150.dp)
     )
 }
+@Composable
+private fun RoundedImageCoil() {
+    Image(
+        painter = rememberAsyncImagePainter("https://picsum.photos/200"),
+        contentDescription = "image with coil",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.size(150.dp)
+            .clip(shape = RoundedCornerShape(20.dp))
+    )
+}
+
+@Composable
+private fun CircleImageCoil() {
+    Image(
+        painter = rememberAsyncImagePainter("https://picsum.photos/200"),
+        contentDescription = "image with coil",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.size(150.dp)
+            .clip(shape = CircleShape)
+    )
+}
+
+
 
 @Composable
 @Preview(showBackground = true)
@@ -323,5 +350,7 @@ private fun preview() {
 //    circleButton()
 //    BlobButton()
 //    SimpleImage()
-    SimpleImageCoil()
+//    SimpleImageCoil()
+//    RoundedImageCoil()
+    CircleImageCoil()
 }
