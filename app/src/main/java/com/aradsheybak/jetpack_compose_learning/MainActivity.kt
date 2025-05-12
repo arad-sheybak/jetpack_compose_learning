@@ -17,10 +17,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -59,6 +65,7 @@ import coil.compose.rememberAsyncImagePainter
 
 import com.aradsheybak.jetpack_compose_learning.ui.theme.Jetpack_compose_learningTheme
 import kotlinx.coroutines.launch
+import java.nio.file.WatchEvent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,9 +74,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Jetpack_compose_learningTheme {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    Alignment.Center
-                ) {
+                    modifier = Modifier.fillMaxSize()) {
                     Content()
                 }
             }
@@ -88,7 +93,9 @@ private fun Content() {
 //    SimpleImage()
 //    SimpleImageCoil()
 //    RoundedImageCoil()
-    CircleImageCoil()
+//    CircleImageCoil()
+//    SimpleColumn()
+    SimpleRow()
 
 
 }
@@ -96,10 +103,10 @@ private fun Content() {
 @Composable
 private fun SimpleText() {
     Text(
-        modifier = Modifier
-            .size(300.dp)
-            .padding(10.dp)
-            .background(colorResource(R.color.teal_200)),
+//        modifier = Modifier
+//            .size(300.dp)
+//            .padding(10.dp)
+//            .background(colorResource(R.color.teal_200)),
         text = "Hello Jetpack Compose",
         fontSize = 16.sp,
         color = colorResource(R.color.purple_500),
@@ -338,6 +345,25 @@ private fun CircleImageCoil() {
     )
 }
 
+@Composable
+private fun SimpleColumn(){
+    Column(modifier = Modifier.fillMaxSize().padding(10.dp)
+        , verticalArrangement = Arrangement.SpaceAround, horizontalAlignment = Alignment.CenterHorizontally) {
+        SimpleText()
+        Spacer(modifier = Modifier.height(10.dp))
+        SimpleImageCoil()
+    }
+}
+@Composable
+private fun SimpleRow(){
+    Row(modifier = Modifier.fillMaxSize().padding(10.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+        SimpleText()
+        Spacer(modifier = Modifier.width(10.dp))
+        SimpleImageCoil()
+
+    }
+}
 
 
 @Composable
@@ -352,5 +378,7 @@ private fun preview() {
 //    SimpleImage()
 //    SimpleImageCoil()
 //    RoundedImageCoil()
-    CircleImageCoil()
+//    CircleImageCoil()
+//    SimpleColumn()
+    SimpleRow()
 }
