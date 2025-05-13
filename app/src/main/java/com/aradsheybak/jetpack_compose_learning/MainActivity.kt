@@ -73,10 +73,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Jetpack_compose_learningTheme {
-                Box(
-                    modifier = Modifier.fillMaxSize()) {
-                    Content()
-                }
+                Content()
             }
         }
     }
@@ -95,8 +92,9 @@ private fun Content() {
 //    RoundedImageCoil()
 //    CircleImageCoil()
 //    SimpleColumn()
-    SimpleRow()
-
+//    SimpleRow()
+//    SimpleBox()
+    SplashScreen()
 
 }
 
@@ -323,13 +321,15 @@ private fun SimpleImageCoil() {
         modifier = Modifier.size(150.dp)
     )
 }
+
 @Composable
 private fun RoundedImageCoil() {
     Image(
         painter = rememberAsyncImagePainter("https://picsum.photos/200"),
         contentDescription = "image with coil",
         contentScale = ContentScale.Crop,
-        modifier = Modifier.size(150.dp)
+        modifier = Modifier
+            .size(150.dp)
             .clip(shape = RoundedCornerShape(20.dp))
     )
 }
@@ -340,24 +340,36 @@ private fun CircleImageCoil() {
         painter = rememberAsyncImagePainter("https://picsum.photos/200"),
         contentDescription = "image with coil",
         contentScale = ContentScale.Crop,
-        modifier = Modifier.size(150.dp)
+        modifier = Modifier
+            .size(150.dp)
             .clip(shape = CircleShape)
     )
 }
 
 @Composable
-private fun SimpleColumn(){
-    Column(modifier = Modifier.fillMaxSize().padding(10.dp)
-        , verticalArrangement = Arrangement.SpaceAround, horizontalAlignment = Alignment.CenterHorizontally) {
+private fun SimpleColumn() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         SimpleText()
         Spacer(modifier = Modifier.height(10.dp))
         SimpleImageCoil()
     }
 }
+
 @Composable
-private fun SimpleRow(){
-    Row(modifier = Modifier.fillMaxSize().padding(10.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+private fun SimpleRow() {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         SimpleText()
         Spacer(modifier = Modifier.width(10.dp))
         SimpleImageCoil()
@@ -365,6 +377,87 @@ private fun SimpleRow(){
     }
 }
 
+@Composable
+private fun SimpleBox() {
+    Box(modifier = Modifier.fillMaxSize()) {
+
+        Image(
+
+            painter = rememberAsyncImagePainter("https://picsum.photos/200"),
+            contentDescription = "image with coil",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(300.dp)
+        )
+
+        Text(
+            text = "Hello Jetpack Compose",
+            fontSize = 16.sp,
+            color = colorResource(R.color.purple_500),
+            fontWeight = FontWeight.ExtraBold,
+            fontStyle = FontStyle.Italic,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
+
+    }
+}
+
+@Composable
+private fun SplashScreen() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            modifier = Modifier.matchParentSize(),
+            painter = painterResource(id = R.drawable.ic_bg_wooden),
+            contentDescription = "wooden background",
+            contentScale = ContentScale.FillBounds
+        )
+
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                modifier = Modifier
+                    .size(250.dp),
+                painter = painterResource(R.drawable.ic_the_noora_logo),
+                contentDescription = null
+            )
+
+            Image(
+                modifier = Modifier.width(300.dp),
+                painter = painterResource(R.drawable.txt_the_noora),
+                contentDescription = null, contentScale = ContentScale.FillWidth
+            )
+        }
+
+
+        Column(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Noora Solution LTD",
+                color = colorResource(R.color.yellow),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            Text(
+                text = "www.thenoora.com",
+                color = colorResource(R.color.yellow),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
+
+            )
+
+        }
+    }
+
+}
 
 @Composable
 @Preview(showBackground = true)
@@ -380,5 +473,7 @@ private fun preview() {
 //    RoundedImageCoil()
 //    CircleImageCoil()
 //    SimpleColumn()
-    SimpleRow()
+//    SimpleRow()
+//    SimpleBox()
+    SplashScreen()
 }
